@@ -81,10 +81,10 @@ public:
 		disass_.setCode( &mem_ );
 #endif      
 
-    systemClock_.setClockSpeed( 1770 );
+        systemClock_.setClockSpeed( 1770 );
 #if USE_RTC
-    systemClock_.setRtcRate( 40 );
-    systemClock_.setIRQ( &rtcIntHandler_ );
+        systemClock_.setRtcRate( 40 );
+        systemClock_.setIRQ( &rtcIntHandler_ );
 #endif      
 
 	}
@@ -95,30 +95,30 @@ public:
 
 	virtual void run();
 
-  void init();
-  
-  void loop();
-	
-
-  uchar* data()
-  {
-    return ram_.getBuffer();
-  }
-
-  uint datasize()
-  {
-    return ram_.getSize();
-  }
-
-  uchar* code()
-  {
-    return rom_.getBuffer();
-  }
-
-  uint codesize()
-  {
-    return rom_.getSize();
-  }
+    void init();
+    
+    void loop();
+    
+    
+    uchar* data()
+    {
+        return ram_.getBuffer();
+    }
+    
+    uint datasize()
+    {
+        return ram_.getSize();
+    }
+    
+    uchar* code()
+    {
+        return rom_.getBuffer();
+    }
+    
+    uint codesize()
+    {
+        return rom_.getSize();
+    }
 
 
 #if USE_FDC
@@ -137,31 +137,31 @@ public:
 	}
 #endif
 
-  void rtcInt();
-
-  virtual void reset()
-  {
-    TRS80::reset();
-    fdc_.reset();
-  }
-
-
-private:
-	Model1Memory	mem_;
-	Model1InOut		io_;
-
-	uchar			data_[RAM_SIZE];
-
-
+    void rtcInt();
+    
+    virtual void reset()
+    {
+        TRS80::reset();
 #if USE_FDC
-	Model1Floppies	floppies_;
-	WD1771			fdc_;
+        fdc_.reset();
 #endif
-
-  RTCIntHandler rtcIntHandler_;
+    }
+    
+    
+    private:
+    Model1Memory	mem_;
+    Model1InOut		io_;
+    
+    uchar			data_[RAM_SIZE];
+    
+#if USE_FDC
+    Model1Floppies	floppies_;
+    WD1771			fdc_;
+#endif
+    
+    RTCIntHandler rtcIntHandler_;
 };
 
 #undef RAM_SIZE
 
 #endif
-

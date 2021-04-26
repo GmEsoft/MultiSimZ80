@@ -291,4 +291,3 @@ CFUNC void ArduTRS80_subloop( void * )
     }
 #endif
 }
-

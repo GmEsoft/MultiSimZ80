@@ -1,3 +1,29 @@
+/**
+ * MultiSimZ80
+ * ===========
+ * 
+ * Z-80 and TRS-80 emulator for: 
+ * - Arduino Due with Adafruit TFT LCD screen;
+ * - ESP32-WROVER-KIT with TFT LCD screen.
+ * 
+ * Arduino Due:
+ * ------------
+ * 
+ * ESP32-WROVER-KIT:
+ * -----------------
+ * - Arduino Core for ESP32: v1.0.x (currently crashing with v2.0+)
+ * - select board = ESP32 Dev Module
+ * - enable PSRAM
+ * - v4.1: remove R167 to allow both LCD and SD to operate together
+ *   See: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/hw-reference/esp32/get-started-wrover-kit.html
+ * - SD works only with SD_MMC library (SD library uses PSI; SD_MMC uses hardware support for SD)
+ *   
+ * SD Card:
+ * --------
+ * Copy BOOT.DSK, BIG5.DSK and GALAXY.CAS to the root folder.
+ * 
+ */
+
 #include "SPI.h"
 #include "Adafruit_GFX.h"
 
@@ -48,6 +74,8 @@ void loop(void)
 
 void init_tft()
 {
+    ESP_LOGI( TFT, "Initializing TFT" );
+    ESP_EARLY_LOGI( TFT, "Initializing TFT" );
     tft0.begin();
 
     // read diagnostics (optional but can help debug problems)
@@ -71,4 +99,3 @@ void init_tft()
     tft.println( "** Multi TRS-80 Demo **" );
     tft.println();
 }
-

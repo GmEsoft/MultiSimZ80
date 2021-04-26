@@ -28,7 +28,7 @@
 #define USE_ADAFRUIT_ILI9341 0
 #define USE_SDMMC 1
 #define USE_SD 0
-#define USE_RES 0
+#define USE_RES 1
 #define USE_RTC 1
 
 #elif defined( __SAM3X8E__ ) // Arduino Due (Programming Port)
